@@ -1,22 +1,60 @@
-import * as Schema from './schema';
-import { parseSchema } from 'mural-schema';
+type H = 'M' | 'P' | 'T' | undefined;
 
-const schema = Schema.OneTwoThreeNotWorkingEvent; // define the schema
-const options = {}; // you can omit this argument
+type BooleanEval = (
+  a: boolean,
+  b: boolean,
+  c: boolean
+) => H;
 
-const validate = parseSchema(schema, options);
+type KeyResult = (
+  d: number,
+  e: number,
+  f: number
+) => number;
 
-// do note that `parseSchema` will throw if `schema` is invalid
-// (e.g. it references unknown types)
+type KeyEvaluatorMap = { [key: string]: KeyResult };
 
-const input = { type: '1', image: '' }; // some input
+const Base: KeyEvaluatorMap = {
+  'M': (d, e, _) => d + (d * e / 10),
+  'P': (d, e, f) => d + (d * (e + f) / 25.5),
+  'T': (d, _, f) => d - (d * f / 30),
+};
 
-const errors = validate(input);
+const Custom1: KeyEvaluatorMap = {
+  'P': (d, e, _) => 2 * d + (d * e / 100),
+};
 
-if (!errors.length) {
-  // success
-  console.log('NO ERRORS!');
-} else {
-  // failure
-  console.log(`Errors:: ${errors.map(o => JSON.stringify(o)).join()}`);
+const Custom2: KeyEvaluatorMap = {
+  'M': (d, e, f) => f + d + (d * e / 100)
 }
+
+type Option = 'base' | 'custom1' | 'custom2';
+
+const getProcessor = (
+  o: Option
+) => (
+  a: boolean,
+  b: boolean,
+  c: boolean,
+  d: number,
+  e: number, // int
+  f: number // int
+) => {
+  console.log(a, b, c, d, e, f);
+
+  if (!b || !a && !c)
+    return new Error('Invalid input.')
+
+  if (a && !c)
+    return evaluateH('M', d, e, f);
+
+  if (a && c) {
+    if (o === 'custom1')
+      return 
+    else
+      return evaluateH('P', d, e, f);
+  }
+
+  if (!a && c) 
+    return evaluateH('T', d, e, f);
+};
