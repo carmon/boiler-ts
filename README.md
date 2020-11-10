@@ -17,5 +17,7 @@ Main function can have as argument up to 3 configs: `base`, `custom1` or `custom
 ## Intructions
 
 - `npm i` to install
-- `npm run test` under cucumber-js
+- `npm run test` to run cucumber-js unit test (you can pass a relative path for a test)
+- `npm run build`: to build all files to JS (in a dist dir)
+- `npm run start`: common usage (as a module import), check `index.ts` in root
 

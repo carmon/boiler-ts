@@ -4,7 +4,7 @@ Background:
     Given a config = "base"
 
 Scenario: A && B && !C => H = M
-    Given a boolean group BOOLS with
+    When evaluating booleans
     """
     {
         "A": true,
@@ -12,11 +12,10 @@ Scenario: A && B && !C => H = M
         "C": false
     }
     """
-    When evaluating $BOOLS
     Then H = "M"
 
 Scenario: A && B && C => H = P
-    Given a boolean group $BOOLS with
+    When evaluating booleans
     """
     {
         "A": true,
@@ -24,11 +23,10 @@ Scenario: A && B && C => H = P
         "C": true
     }
     """
-    When evaluating $BOOLS
     Then H = "P"
 
 Scenario: !A && B && C => H = T
-    Given a boolean group $BOOLS with
+    When evaluating booleans
     """
     {
         "A": false,
@@ -36,11 +34,10 @@ Scenario: !A && B && C => H = T
         "C": true
     }
     """
-    When evaluating $BOOLS
     Then H = "T"
 
 Scenario: ERROR
-    Given a boolean group $BOOLS with
+    When evaluating booleans
     """
     {
         "A": false,
@@ -48,5 +45,4 @@ Scenario: ERROR
         "C": false
     }
     """
-    When evaluating $BOOLS
     Then H has no value

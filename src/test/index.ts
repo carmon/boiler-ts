@@ -1,8 +1,7 @@
 import pickledCucumber, { SetupFn } from 'pickled-cucumber';
 import boolEval from '../boolEval';
+import keyEval from '../keyEval';
 import { Option } from '../types';
-
-type BooleanGroup = { [key: string]: boolean };
 
 const setup: SetupFn = ({
   Given,
@@ -10,8 +9,8 @@ const setup: SetupFn = ({
   When,
   setCtx,
   getCtx,
-  compare,
   onTearDown,
+  compare,
 }) => {
   const setConfig = (value: unknown) => {
     const current = getCtx('config');
@@ -23,22 +22,38 @@ const setup: SetupFn = ({
     setConfig(config);
   });
 
-  Given('a boolean group {variable} with', (boolsVar, payload) => {
-    console.log(payload);
-    setCtx(boolsVar, JSON.parse(payload) as BooleanGroup);
+  Given('H value is "{word}"', hValue => {
+    setCtx('H', hValue);
   });
 
   When(
-    'evaluating {variable}',
-    boolsVar => {
+    'evaluating booleans',
+    payload => {
       const cfg = getCtx('config');
-      const vars = getCtx<BooleanGroup>(boolsVar);
+      const vars = JSON.parse(payload);
       setCtx('H', boolEval(cfg as Option)(vars['A'], vars['B'], vars['C']));
     },
     { inline: true },
   );
 
-  Then('H = "{word}"', result => compare('is', getCtx('H'), result));
+  When(
+    'evaluating numbers',
+    payload => {
+      const cfg = getCtx('config');
+      const vars = JSON.parse(payload);
+      setCtx(
+        'K',
+        keyEval(cfg as Option)(getCtx('H'), vars['D'], vars['E'], vars['F']),
+      );
+    },
+    { inline: true },
+  );
+
+  Then('H = "{word}"', result => compare('is', getCtx('H'), `"${result}"`));
+
+  Then('K = {variable}', float => compare('is', getCtx('K'), float));
+
+  Then('H has no value', () => !getCtx('H'));
 };
 
 pickledCucumber(setup);
