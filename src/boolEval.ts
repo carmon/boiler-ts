@@ -1,12 +1,24 @@
 import { BooleanEval, Option } from './types';
 
-
 const base: BooleanEval = (a, b, c) => {
-    'M': (d, e, _) => d + (d * e / 10),
-    'P': (d, e, f) => d + (d * (e + f) / 25.5),
-    'T': (d, _, f) => d - (d * f / 30),
+  if (a && b && c) return 'P';
+  if (a && b && !c) return 'M';
+  if (!a && b && c) return 'T';
+
+  return undefined;
 };
 
-export default (o: Option): BooleanEval => (a, b, c) => {
+const custom2: BooleanEval = (a, b, c) => {
+  if (a && b && !c) return 'T';
+  if (a && !b && c) return 'M';
 
+  return base(a, b, c);
 };
+
+const map = {
+  base: base,
+  custom1: base,
+  custom2: custom2,
+};
+
+export default (o: Option): BooleanEval => (a, b, c) => map[o](a, b, c);

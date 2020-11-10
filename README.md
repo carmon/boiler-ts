@@ -1,41 +1,21 @@
+# Sprout Therapy Assignment
 
-# Following variables are acceptable as input:
-- *A*: bool
-- *B*: bool
-- *C*: bool
-- *D*: float
-- *E*: int
-- *F*: int 
+This is the resolution for Sprout Assigment.
 
-# Expected outputs
-- *H*: one of these predefined values [M,P,T] (e.g. H could be equal to either of 3
-values: M, P or T)
-- *K*: floating point number (e.g. float, decimal) 
+## Description
 
-# Base 
+This repo is a simple node app, written it TypeScript. Is a main function that has to evaluate 6 arguments (3 booleans: *a*,*b* and *c*, one float: *d*, and 2 integers: *e* and *f*). 
+Is divided in 2 files:
+- `boolEval` is a map of functions that evaluate the first 3 bools, and return a *H* output variable that can be strings 'M', 'P', 'T' or return and error value (undefined).
+- `keyEval` is a map of functions that evaluate the *H* output as argument, calculates operations with the rest of the original six a float and 2 ints, in this case, all numbers, and return a *K* float output.
 
-```
-A && B && !C => H = M
-A && B && C => H = P
-!A && B && C => H = T
-[other] => [error]
-H = M => K = D + (D * E / 10)
-H = P => K = D + (D * (E - F) / 25.5)
-H = T => K = D - (D * F / 30)
-```
+Both outputs, *H* and *K*, are finally returned inside main function, in an JS object (`{ h, k }`). If boolean configurations are not met in `boolEval` (returns `undefined`), an error is returned instead.
 
-# Custom 1 
+Main function can have as argument up to 3 configs: `base`, `custom1` or `custom2`. The custom configurations run base config as a backup where no value is overriden.
 
-```
-H = P => K = 2 * D + (D * E / 100)
-```
 
-# Custom 2 
+## Intructions
 
-```
-A && B && !C => H = T
-A && !B && C => H = M
-H = M => K = F + D + (D * E / 100)
-```
+- `npm i` to install
+- `npm run test` under cucumber-js
 
-Shape of implementation is up to you. 
