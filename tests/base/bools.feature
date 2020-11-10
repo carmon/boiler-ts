@@ -1,10 +1,10 @@
 Feature: RUN APP WITH BASE ON BOOLEANS
 
 Background:
-    Given an app A with config = 'base'
+    Given a config = "base"
 
 Scenario: A && B && !C => H = M
-    Given a boolean group $BOOLS with
+    Given a boolean group BOOLS with
     """
     {
         "A": true,

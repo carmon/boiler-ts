@@ -1,8 +1,8 @@
 import boolEval from './boolEval';
 import keyEval from './keyEval';
-import { Option } from './types';
+import { App, Option } from './types';
 
-const getProcessor = (o: Option) => (
+const getProcessor: App = (o: Option) => (
   a: boolean,
   b: boolean,
   c: boolean,
