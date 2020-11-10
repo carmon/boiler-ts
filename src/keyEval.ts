@@ -2,7 +2,7 @@ import { KeyEvaluatorMap, Option } from './types';
 
 const base: KeyEvaluatorMap = {
   M: (d, e) => d + (d * e) / 10,
-  P: (d, e, f) => d + (d * (e + f)) / 25.5,
+  P: (d, e, f) => d + (d * (e - f)) / 25.5,
   T: (d, _, f) => d - (d * f) / 30,
 };
 

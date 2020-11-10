@@ -3,8 +3,6 @@
     "target": "es2018",
     "module": "commonjs",
     "outDir": "./dist",
-    "jsx": "react",
-    "jsxFactory": "createElement",
     "noImplicitAny": true,
     "strict": true,
     "strictNullChecks": true,

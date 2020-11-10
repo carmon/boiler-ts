@@ -20,18 +20,18 @@ Scenario: H = M => K = D + (D * E / 10) (3)
 
 Scenario: H = P => K = D + (D * (E - F) / 25.5) (1)
     Given H value is "P"
-    When evaluating numbers { "D": 2, "E": 50, "F": 50 }
-    Then K = 9.843137254901961
+    When evaluating numbers { "D": 2, "E": 30, "F": 50 }
+    Then K = 0.43137254901960786
 
 Scenario: H = P => K = D + (D * (E - F) / 25.5) (2)
     Given H value is "P"
-    When evaluating numbers { "D": 20, "E": 50, "F": 50 }
-    Then K = 98.43137254901961
+    When evaluating numbers { "D": 20, "E": 50, "F": 5 }
+    Then K = 55.294117647058826
 
 Scenario: H = P => K = D + (D * (E - F) / 25.5) (3)
     Given H value is "P"
     When evaluating numbers { "D": 50, "E": 50, "F": 50 }
-    Then K = 246.07843137254903
+    Then K = 50
 
 Scenario: H = T => K = D - (D * F / 30) (1)
     Given H value is "T"
