@@ -19,7 +19,7 @@ When I first read the spec, I though it was simple, the 3 boolean variables are 
 
 My approach was a functional one, I prefer this in this kind of abstract exercises were the goal is to take data from *A* value to *B* value. I divided everything into 2 functions (one for booleans, the other for numbers) and called evaluators. Main file calls boolean evaluator first, check if there wasn't an error (if there is one, program exits with status 1), and then calls the key (and numbers) evaluator. Finally, it returns an object with both outputs.
 
-I didn't make use of api or web libs, I limited it to a nodejs app, made in TypeScript and run via ts-node, but buildable to JS if you like. I like JS but like TS better, since is an improvement. The test suite uses cucumber-js, and step definitions use pickled-cucumber, a functional approch to the former lib. Both types and tests could definitely could be better, but I opted for speed over quality. I'm an iteration advocate XD
+I didn't make use of api or web libs, I limited it to a nodejs app, made in TypeScript and run via ts-node, but buildable to JS if you like. I like JS but like TS better, since is an improvement. The test suite uses cucumber-js, and step definitions use pickled-cucumber, a functional approach to the former. Both types and tests could definitely be better, but I opted for speed over quality. I'm an iteration advocate XD
 
 I used this boilerplate of TS because is my personal boilerplate to kick some projects every now and then. It has eslint and prettier for file linting. I added a github action to run test on every push to main branch. You can watch every commit I made since I created the main branch, I promise no cheating. Have a nice day. 
 
