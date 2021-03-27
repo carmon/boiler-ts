@@ -1,19 +1,23 @@
 {
   "devDependencies": {
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
-    "cucumber": "4.2.1",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
-    "pickled-cucumber": "^2.1.0",
     "prettier": "^1.19.1",
-    "ts-node": "^9.0.0",
-    "typescript": "^3.7.5"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "ts-loader": "^8.0.18",
+    "typescript": "^3.7.5",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
-    "build": "./node_modules/.bin/tsc",
-    "start": "./node_modules/.bin/ts-node index.ts",
-    "test": "sh ./scripts/test.sh"
+    "build": "webpack",
+    "dev": "webpack serve --config webpack.config.js"
   }
 }
