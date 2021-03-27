@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2018",
     "module": "commonjs",
-    "outDir": "./dist",
+    "jsx": "react",
     "noImplicitAny": true,
     "strict": true,
     "strictNullChecks": true,
@@ -13,5 +13,5 @@
     "declaration": true,
     "sourceMap": true
   },
-  "include": ["./src/index.ts"]
+  "include": ["src/index.tsx"]
 }
